@@ -22,5 +22,12 @@ namespace UserManagmentWebAPI.Controllers.Authentication
             var response = await _authenticationService.RegisterUserAsync(request);
             return Ok(response);
         }
+
+        [HttpPost("Login")]
+        public async Task<IActionResult>Login([FromBody] LoginRequest request)
+        {
+            var result = await _authenticationService.LoginAsync(request);
+            return Ok(result);
+        }
     }
 }

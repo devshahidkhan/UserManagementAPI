@@ -1,4 +1,5 @@
-﻿using UserManagmentWebAPI.Data;
+﻿using Microsoft.EntityFrameworkCore;
+using UserManagmentWebAPI.Data;
 using UserManagmentWebAPI.Entities;
 using UserManagmentWebAPI.Repositories.Interfces;
 
@@ -18,6 +19,11 @@ namespace UserManagmentWebAPI.Repositories.Implementation
            await _context.AddAsync(user);
            await _context.SaveChangesAsync();
            
+        }
+
+        public async Task<User> GetByEmailAsync(string email)
+        {
+            return await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
         }
     }
 }

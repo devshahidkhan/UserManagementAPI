@@ -6,5 +6,6 @@ namespace UserManagmentWebAPI.Services.Interfaces
     public interface IUserAuthenticationService
     {
         public Task<string> RegisterUserAsync(CreateUserRequest request);
+        public Task<string> LoginAsync(LoginRequest request);
     }
 }
