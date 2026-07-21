@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
+using UserManagmentWebAPI.Data.Entities;
 using UserManagmentWebAPI.DTO_s.Authentication;
-using UserManagmentWebAPI.Entities;
 
 namespace UserManagmentWebAPI.Extentions.Mappers.UserMapper
 {

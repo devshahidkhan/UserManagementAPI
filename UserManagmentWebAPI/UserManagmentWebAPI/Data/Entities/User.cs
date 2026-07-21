@@ -2,7 +2,7 @@
 using System.Data;
 using UserManagmentWebAPI.Enums;
 
-namespace UserManagmentWebAPI.Entities
+namespace UserManagmentWebAPI.Data.Entities
 {
     public class User
     {

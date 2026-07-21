@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UserManagmentWebAPI.Data;
-using UserManagmentWebAPI.Entities;
+using UserManagmentWebAPI.Data.Entities;
+using UserManagmentWebAPI.DTO_s.Authentication;
 using UserManagmentWebAPI.Repositories.Interfces;
 
 namespace UserManagmentWebAPI.Repositories.Implementation
@@ -14,16 +15,32 @@ namespace UserManagmentWebAPI.Repositories.Implementation
             _context = context;
         }
 
-        public async Task RegisterUserAsync(User user)
+        public async Task<User> RegisterUserAsync(User user)
         {
-           await _context.AddAsync(user);
-           await _context.SaveChangesAsync();
-           
+            var existingUser = await _context.Users.FirstOrDefaultAsync(x => x.Email == user.Email || x.UserName == user.UserName || x.Contact == user.Contact);
+            if (existingUser is null)
+            {
+                await _context.AddAsync(user);
+                await _context.SaveChangesAsync();
+                return null;
+            }
+            return existingUser;   
         }
 
-        public async Task<User> GetByEmailAsync(string email)
+        public async Task<bool> LoginAsync(LoginRequest request)
         {
-            return await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+            var IsValidUser = await _context.Users.AnyAsync(x => x.Email == request.Identifier || x.UserName == request.Identifier || x.Contact == request.Identifier);
+            if (IsValidUser)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public async Task<User> GetByIdentifierAsync(string identifier)
+        {
+           var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == identifier || x.UserName == identifier || x.Contact == identifier);
+           return user;
         }
     }
 }
