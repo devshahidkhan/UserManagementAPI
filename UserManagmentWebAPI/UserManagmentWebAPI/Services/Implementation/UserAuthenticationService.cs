@@ -22,7 +22,7 @@ namespace UserManagmentWebAPI.Services.Implementation
             _jwtTokenService = jwtTokenService;
         }
 
-        public async Task<ApiResponse<string>> RegisterUserAsync(CreateUserRequest request)
+        public async Task<ApiResponse<string>> RegisterUserAsync(CreateUserDto request)
         {
 
             var user = request.ToEntity();

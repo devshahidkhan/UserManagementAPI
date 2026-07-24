@@ -3,7 +3,7 @@ using UserManagmentWebAPI.Enums;
 
 namespace UserManagmentWebAPI.DTO_s.Authentication
 {
-    public record CreateUserRequest
+    public record CreateUserDto
     (
        Guid UserId,
        string FullName,
