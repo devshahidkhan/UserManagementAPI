@@ -5,7 +5,7 @@
         public T? Data { get; set; }
         public string? ErrorMessage { get; set; }
         public bool IsSuccess { get; set; }
-
+        //The below method create the Successfull response object
         public static ApiResponse<T> Success(T? data)
         {
             return new ApiResponse<T>
@@ -15,6 +15,7 @@
             };
         }
 
+        //The below method create the Failure response object
         public static ApiResponse<T> Failure(string? errorMessage)
         {
             return new ApiResponse<T>

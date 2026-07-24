@@ -1,4 +1,5 @@
 ﻿using UserManagementWebAPI.Response;
+using UserManagementWebAPI.Services.Interfaces;
 using UserManagmentWebAPI.DTO_s.Authentication;
 using UserManagmentWebAPI.Extentions.Mappers.UserMapper;
 using UserManagmentWebAPI.Repositories.Interfces;
@@ -11,13 +12,14 @@ namespace UserManagmentWebAPI.Services.Implementation
     {
         private readonly IUserAuthenticationRepository _authenticationRepository;
         private readonly IPasswordHasher _passwordHasher; 
-        private readonly ILogger<UserAuthenticationService> _logger;
 
-        public UserAuthenticationService(IUserAuthenticationRepository authenticationRepository,IPasswordHasher passwordHasher,ILogger<UserAuthenticationService> logger) 
+        private readonly IJwtTokenService _jwtTokenService;
+
+        public UserAuthenticationService(IUserAuthenticationRepository authenticationRepository,IPasswordHasher passwordHasher,IJwtTokenService jwtTokenService) 
         {
             _authenticationRepository = authenticationRepository;
             _passwordHasher = passwordHasher;
-            _logger = logger;
+            _jwtTokenService = jwtTokenService;
         }
 
         public async Task<ApiResponse<string>> RegisterUserAsync(CreateUserRequest request)
@@ -62,7 +64,7 @@ namespace UserManagmentWebAPI.Services.Implementation
                 return ApiResponse<string>.Failure("Invalid Password");
             }
 
-            return ApiResponse<string>.Success("Login Successfully");
+            return ApiResponse<string>.Success(await _jwtTokenService.GenerateTokenAsync(user));
         }
     }
 }
