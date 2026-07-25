@@ -24,7 +24,8 @@ namespace UserManagmentWebAPI.Repositories.Implementation
                 await _context.SaveChangesAsync();
                 return null;
             }
-            return existingUser;   
+            return existingUser;
+
         }
 
         public async Task<bool> LoginAsync(LoginRequest request)

@@ -10,17 +10,18 @@ using UserManagmentWebAPI.Extensions.Services;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers(option =>
 {
-    option.Filters.Add<ValidateModelState>(); //use for model Validation
+    option.Filters.Add<ValidateModelState>(); //use for model Validation(override)
 });
 builder.Services.AddApplicationServices(builder.Configuration)
                 .AddApplicationRepositories()
-                 //For Swagger
+                 //For Swagger(Extension)
                 .AddSwaggerDocumentation()
                 .AddAuthentations(builder.Configuration)
-                 //For Valiation CreateUserRequest
+                //For Valiation CreateUserRequest(Extension)
                 .AddFluentValidationAutoValidation()
                 .AddValidatorsFromAssemblyContaining<CreateUserDtoValidator>();
-                //End
+//End
+builder.Host.AddSerilogConfiguration(builder.Configuration);
 
 var app = builder.Build();
 app.ConfigureRequestPipeline();

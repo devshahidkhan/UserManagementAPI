@@ -1,4 +1,6 @@
-﻿namespace UserManagmentWebAPI.Extensions.Middleware
+﻿using Serilog;
+
+namespace UserManagmentWebAPI.Extensions.Middleware
 {
     public static class MiddlewareExtention
     {
@@ -13,7 +15,11 @@
 
             app.UseHttpsRedirection();
 
+            app.UseAuthentication();
             app.UseAuthorization();
+     
+
+            app.UseSerilogRequestLogging();
 
             app.MapControllers();
             return app;

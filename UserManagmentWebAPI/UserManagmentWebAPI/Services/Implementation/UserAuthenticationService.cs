@@ -12,42 +12,51 @@ namespace UserManagmentWebAPI.Services.Implementation
     {
         private readonly IUserAuthenticationRepository _authenticationRepository;
         private readonly IPasswordHasher _passwordHasher; 
-
         private readonly IJwtTokenService _jwtTokenService;
 
-        public UserAuthenticationService(IUserAuthenticationRepository authenticationRepository,IPasswordHasher passwordHasher,IJwtTokenService jwtTokenService) 
+        private readonly ILogger<UserAuthenticationService> _logger;
+
+        public UserAuthenticationService(IUserAuthenticationRepository authenticationRepository,IPasswordHasher passwordHasher,IJwtTokenService jwtTokenService,ILogger<UserAuthenticationService> logger) 
         {
             _authenticationRepository = authenticationRepository;
             _passwordHasher = passwordHasher;
             _jwtTokenService = jwtTokenService;
+            _logger = logger;
         }
 
         public async Task<ApiResponse<string>> RegisterUserAsync(CreateUserDto request)
         {
-
-            var user = request.ToEntity();
-            await _passwordHasher.CreateHash(request.Password, out byte[] hash, out byte[] salt);
-            user.PasswordHash = hash;
-            user.PasswordSalt = salt;
-            var existingUser = await _authenticationRepository.RegisterUserAsync(user);
-
-            if (existingUser is null)
+            try
             {
+                var user = request.ToEntity();
+                await _passwordHasher.CreateHash(request.Password, out byte[] hash, out byte[] salt);
+                user.PasswordHash = hash;
+                user.PasswordSalt = salt;
+                var existingUser = await _authenticationRepository.RegisterUserAsync(user);
+
+                if (existingUser is null)
+                {
+                    return ApiResponse<string>.Success("User has been Signup Successfully!");
+                }
+                if (existingUser.Email == request.Email)
+                {
+                    return ApiResponse<string>.Failure("Email is already exists");
+                }
+                else if (existingUser.UserName == request.UserName)
+                {
+                    return ApiResponse<string>.Failure("UserName is already exists.");
+                }
+                else if (existingUser.Contact == request.Contact)
+                {
+                    return ApiResponse<string>.Failure("Contact is already exists");
+                }
                 return ApiResponse<string>.Success("User has been Signup Successfully!");
             }
-            if (existingUser.Email == request.Email)
+            catch (Exception ex)
             {
-                return ApiResponse<string>.Failure("Email is already exists");
+                _logger.LogError(ex.Message);
+                return ApiResponse<string>.Failure(ex.Message);
             }
-            else if(existingUser.UserName == request.UserName)
-            {
-                return ApiResponse<string>.Failure("UserName is already exists.");
-            }
-            else if (existingUser.Contact == request.Contact)
-            {
-                return ApiResponse<string>.Failure("Contact is already exists");
-            }
-            return ApiResponse<string>.Success("User has been Signup Successfully!");
         }
 
         public async Task<ApiResponse<string>> LoginAsync(LoginRequest request)

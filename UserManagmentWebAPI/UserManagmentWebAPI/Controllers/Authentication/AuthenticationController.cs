@@ -13,12 +13,12 @@ namespace UserManagmentWebAPI.Controllers.Authentication
     public class AuthenticationController : ControllerBase
     {
         private readonly IUserAuthenticationService _authenticationService;
+        private readonly ILogger<AuthenticationController> _logger;
 
-
-        public AuthenticationController(IUserAuthenticationService authenticationService)
+        public AuthenticationController(IUserAuthenticationService authenticationService, ILogger<AuthenticationController> logger)
         {
             _authenticationService = authenticationService;
-
+            _logger = logger;
         }
 
         [HttpPost("RegisterUser")]
@@ -30,6 +30,7 @@ namespace UserManagmentWebAPI.Controllers.Authentication
             //}
             //Use Filter
 
+
             var response = await _authenticationService.RegisterUserAsync(request);
             return Ok(response);
         }
@@ -37,6 +38,7 @@ namespace UserManagmentWebAPI.Controllers.Authentication
         [HttpPost("Login")]
         public async Task<IActionResult>Login([FromBody] LoginRequest request)
         {
+            _logger.LogInformation($"User attempting to log in with Identifier: {request.Identifier}");
             var result = await _authenticationService.LoginAsync(request);
             return Ok(result);
         }

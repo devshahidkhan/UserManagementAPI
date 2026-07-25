@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using Serilog;
 using Swashbuckle.AspNetCore.Filters;
 using System.Reflection;
 using System.Text;
@@ -73,6 +74,12 @@ namespace UserManagmentWebAPI.Extensions.Services
                 });
 
             return Services;
+        }
+
+        public static IHostBuilder AddSerilogConfiguration(this IHostBuilder host,IConfiguration configuration)
+        {
+            Log.Logger = new LoggerConfiguration().ReadFrom.Configuration(configuration).CreateLogger();
+            return host.UseSerilog();
         }
 
         //{
