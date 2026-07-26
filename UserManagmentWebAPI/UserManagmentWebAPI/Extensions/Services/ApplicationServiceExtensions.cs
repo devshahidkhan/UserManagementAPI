@@ -9,11 +9,10 @@ using System.Reflection;
 using System.Text;
 using UserManagementWebAPI.Services.Implementation;
 using UserManagementWebAPI.Services.Interfaces;
-using UserManagmentWebAPI.Data;
-using UserManagmentWebAPI.Services.Implementation;
-using UserManagmentWebAPI.Services.Interfaces;
+using UserManagementWebAPI.Data;
 
-namespace UserManagmentWebAPI.Extensions.Services
+
+namespace UserManagementWebAPI.Extensions.Services
 {
     public static class ApplicationServiceExtensions
     {

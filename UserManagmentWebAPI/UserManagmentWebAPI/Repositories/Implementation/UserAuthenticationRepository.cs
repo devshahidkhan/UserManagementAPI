@@ -1,10 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using UserManagmentWebAPI.Data;
-using UserManagmentWebAPI.Data.Entities;
-using UserManagmentWebAPI.DTO_s.Authentication;
-using UserManagmentWebAPI.Repositories.Interfces;
+using UserManagementWebAPI.Data;
+using UserManagementWebAPI.Data.Entities;
+using UserManagementWebAPI.DTO_s.Authentication;
+using UserManagementWebAPI.Repositories.Interfces;
 
-namespace UserManagmentWebAPI.Repositories.Implementation
+namespace UserManagementWebAPI.Repositories.Implementation
 {
     public class UserAuthenticationRepository: IUserAuthenticationRepository
     {

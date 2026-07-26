@@ -1,8 +1,8 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
-using UserManagmentWebAPI.Services.Interfaces;
+using UserManagementWebAPI.Services.Interfaces;
 
-namespace UserManagmentWebAPI.Services.Implementation
+namespace UserManagementWebAPI.Services.Implementation
 {
     public class PasswordHasher : IPasswordHasher
     {

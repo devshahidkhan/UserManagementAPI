@@ -1,8 +1,8 @@
 ﻿using System.Runtime.CompilerServices;
-using UserManagmentWebAPI.Data.Entities;
-using UserManagmentWebAPI.DTO_s.Authentication;
+using UserManagementWebAPI.Data.Entities;
+using UserManagementWebAPI.DTO_s.Authentication;
 
-namespace UserManagmentWebAPI.Extentions.Mappers.UserMapper
+namespace UserManagementWebAPI.Extentions.Mappers.UserMapper
 {
     public static class CreateUserMapper
     {

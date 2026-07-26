@@ -3,13 +3,13 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using UserManagementWebAPI.Services.Interfaces;
-using UserManagmentWebAPI.Data.Entities;
+using UserEntity = UserManagementWebAPI.Data.Entities.User;
 
 namespace UserManagementWebAPI.Services.Implementation
 {
-    public class JwtTokenService(IConfiguration configuration) : IJwtTokenService
+    public class JwtTokenService(ConfigurationManager configuration) : IJwtTokenService
     {
-        public async Task<string> GenerateTokenAsync(User user)
+        public Task<string> GenerateTokenAsync(User user)
         {
             var claims = new List<Claim>
             {
@@ -30,7 +30,8 @@ namespace UserManagementWebAPI.Services.Implementation
             var tokenHandler = new JwtSecurityTokenHandler();
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
-            return tokenHandler.WriteToken(token);
-        }
+            JwtSecurityTokenHandler tokenHandler1 = tokenHandler;
+            return tokenHandler1.WriteToken(user);
+        }  
     }
 }

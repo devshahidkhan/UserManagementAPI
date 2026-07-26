@@ -2,10 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using UserManagementWebAPI.Filters;
 using UserManagementWebAPI.Services.Interfaces;
-using UserManagmentWebAPI.DTO_s.Authentication;
-using UserManagmentWebAPI.Services.Interfaces;
+using UserManagementWebAPI.DTO_s.Authentication;
 
-namespace UserManagmentWebAPI.Controllers.Authentication
+
+namespace UserManagementWebAPI.Controllers.Authentication
 {
     [Route("api/[controller]")]
     [ApiController]

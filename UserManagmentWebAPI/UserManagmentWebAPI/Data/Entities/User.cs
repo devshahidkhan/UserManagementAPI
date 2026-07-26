@@ -1,8 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.Data;
-using UserManagmentWebAPI.Enums;
+using UserManagementWebAPI.Enums;
 
-namespace UserManagmentWebAPI.Data.Entities
+namespace UserManagementWebAPI.Data.Entities
 {
     public class User
     {

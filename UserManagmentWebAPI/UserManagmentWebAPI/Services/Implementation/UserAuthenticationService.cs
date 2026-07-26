@@ -1,12 +1,12 @@
 ﻿using UserManagementWebAPI.Response;
 using UserManagementWebAPI.Services.Interfaces;
-using UserManagmentWebAPI.DTO_s.Authentication;
-using UserManagmentWebAPI.Extentions.Mappers.UserMapper;
-using UserManagmentWebAPI.Repositories.Interfces;
-using UserManagmentWebAPI.Services.Interfaces;
+using UserManagementWebAPI.DTO_s.Authentication;
+using UserManagementWebAPI.Extentions.Mappers.UserMapper;
+using UserManagementWebAPI.Repositories.Interfces;
 
 
-namespace UserManagmentWebAPI.Services.Implementation
+
+namespace UserManagementWebAPI.Services.Implementation
 {
     public class UserAuthenticationService:IUserAuthenticationService
     {

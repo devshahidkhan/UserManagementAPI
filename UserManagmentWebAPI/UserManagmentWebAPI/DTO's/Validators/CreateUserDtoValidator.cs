@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using UserManagmentWebAPI.DTO_s.Authentication;
+using UserManagementWebAPI.DTO_s.Authentication;
 
 namespace UserManagementWebAPI.DTO_s.Validators
 {

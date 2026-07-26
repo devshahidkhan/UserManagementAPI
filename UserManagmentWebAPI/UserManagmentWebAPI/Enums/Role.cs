@@ -1,4 +1,4 @@
-﻿namespace UserManagmentWebAPI.Enums
+﻿namespace UserManagementWebAPI.Enums
 {
     public enum Role
     {

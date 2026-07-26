@@ -2,9 +2,9 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using UserManagementWebAPI.DTO_s.Validators;
 using UserManagementWebAPI.Filters;
-using UserManagmentWebAPI.Extensions.Middleware;
-using UserManagmentWebAPI.Extensions.Repositories;
-using UserManagmentWebAPI.Extensions.Services;
+using UserManagementWebAPI.Extensions.Middleware;
+using UserManagementWebAPI.Extensions.Repositories;
+using UserManagementWebAPI.Extensions.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);

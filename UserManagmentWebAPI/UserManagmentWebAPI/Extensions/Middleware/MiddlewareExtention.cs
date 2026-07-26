@@ -1,6 +1,6 @@
 ﻿using Serilog;
 
-namespace UserManagmentWebAPI.Extensions.Middleware
+namespace UserManagementWebAPI.Extensions.Middleware
 {
     public static class MiddlewareExtention
     {

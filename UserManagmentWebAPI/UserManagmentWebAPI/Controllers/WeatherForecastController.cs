@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace UserManagmentWebAPI.Controllers
+namespace UserManagementWebAPI.Controllers
 {
     [Authorize(Roles ="Admin")]
     [ApiController]

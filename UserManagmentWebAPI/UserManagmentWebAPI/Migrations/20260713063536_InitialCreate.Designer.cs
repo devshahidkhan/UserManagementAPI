@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using UserManagmentWebAPI.Data;
+using UserManagementWebAPI.Data;
 
 #nullable disable
 
-namespace UserManagmentWebAPI.Migrations
+namespace UserManagementWebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     [Migration("20260713063536_InitialCreate")]
@@ -25,7 +25,7 @@ namespace UserManagmentWebAPI.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("UserManagmentWebAPI.Entities.User", b =>
+            modelBuilder.Entity("UserManagementWebAPI.Entities.User", b =>
                 {
                     b.Property<Guid>("UserId")
                         .ValueGeneratedOnAdd()

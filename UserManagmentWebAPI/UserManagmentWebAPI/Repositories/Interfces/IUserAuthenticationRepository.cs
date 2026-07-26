@@ -1,7 +1,7 @@
-﻿using UserManagmentWebAPI.Data.Entities;
-using UserManagmentWebAPI.DTO_s.Authentication;
+﻿using UserManagementWebAPI.Data.Entities;
+using UserManagementWebAPI.DTO_s.Authentication;
 
-namespace UserManagmentWebAPI.Repositories.Interfces
+namespace UserManagementWebAPI.Repositories.Interfces
 {
     public interface IUserAuthenticationRepository
     {

@@ -1,4 +1,4 @@
-﻿namespace UserManagmentWebAPI.Services.Interfaces
+﻿namespace UserManagementWebAPI.Services.Interfaces
 {
     public interface IPasswordHasher
     {

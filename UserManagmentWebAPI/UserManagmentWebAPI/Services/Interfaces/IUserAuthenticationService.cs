@@ -1,8 +1,8 @@
 ﻿using UserManagementWebAPI.Response;
-using UserManagmentWebAPI.DTO_s.Authentication;
+using UserManagementWebAPI.DTO_s.Authentication;
 
 
-namespace UserManagmentWebAPI.Services.Interfaces
+namespace UserManagementWebAPI.Services.Interfaces
 {
     public interface IUserAuthenticationService
     {

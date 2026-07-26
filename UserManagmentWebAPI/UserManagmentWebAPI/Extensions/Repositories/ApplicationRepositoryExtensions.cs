@@ -1,7 +1,7 @@
-﻿using UserManagmentWebAPI.Repositories.Implementation;
-using UserManagmentWebAPI.Repositories.Interfces;
+﻿using UserManagementWebAPI.Repositories.Implementation;
+using UserManagementWebAPI.Repositories.Interfces;
 
-namespace UserManagmentWebAPI.Extensions.Repositories
+namespace UserManagementWebAPI.Extensions.Repositories
 {
     public static class ApplicationRepositoryExtensions
     {
