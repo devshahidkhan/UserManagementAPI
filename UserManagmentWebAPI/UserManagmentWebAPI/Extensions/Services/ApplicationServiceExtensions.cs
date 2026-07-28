@@ -10,6 +10,8 @@ using System.Text;
 using UserManagementWebAPI.Services.Implementation;
 using UserManagementWebAPI.Services.Interfaces;
 using UserManagementWebAPI.Data;
+using UserManagementWebAPI.Services.Users.Interface;
+using UserManagementWebAPI.Services.Users.Implementation;
 
 
 namespace UserManagementWebAPI.Extensions.Services
@@ -18,6 +20,7 @@ namespace UserManagementWebAPI.Extensions.Services
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services,ConfigurationManager manager) => services
             .AddScoped<IUserAuthenticationService, UserAuthenticationService>()
+            .AddScoped<IUserService,UserService>()
             .AddScoped<IPasswordHasher, PasswordHasher>()
             .AddScoped<IJwtTokenService, JwtTokenService>()
              //---> ApplicationDbContext <---
@@ -62,14 +65,29 @@ namespace UserManagementWebAPI.Extensions.Services
             Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
-                    options.TokenValidationParameters = new TokenValidationParameters()
+                    //options.TokenValidationParameters = new TokenValidationParameters()
+                    //{
+                    //    ValidAudience = "abcxyzxyedh",
+                    //    ValidIssuer = "www.hkxljsxiuwhuxhusxnoz.com",
+                    //    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configurationManager.GetSection("APITokenKey")["Key"]!)),
+                    //    ValidateIssuerSigningKey = true,
+                    //    ValidateLifetime = true
+                    //};
+
+                    options.TokenValidationParameters = new TokenValidationParameters
                     {
-                        ValidAudience = "abcxyzxyedh",
-                        ValidIssuer = "www.hkxljsxiuwhuxhusxnoz.com",
+                        ValidAudience = configurationManager["JwtSettings:Audience"],
+
+                        ValidIssuer = configurationManager["JwtSettings:Issuer"],
+
+                        //IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configurationManager["JwtSettings:Key"]!)),
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configurationManager.GetSection("APITokenKey")["Key"]!)),
+                        ValidateAudience = true,
+                        ValidateIssuer = true,
                         ValidateIssuerSigningKey = true,
                         ValidateLifetime = true
                     };
+
                 });
 
             return Services;

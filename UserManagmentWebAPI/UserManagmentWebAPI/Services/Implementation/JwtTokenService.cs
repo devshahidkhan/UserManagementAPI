@@ -3,27 +3,37 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using UserManagementWebAPI.Services.Interfaces;
-using UserEntity = UserManagementWebAPI.Data.Entities.User;
+using UserManagementWebAPI.Data.Entities;
 
 namespace UserManagementWebAPI.Services.Implementation
 {
-    public class JwtTokenService(ConfigurationManager configuration) : IJwtTokenService
+    public class JwtTokenService(IConfiguration _configuration) : IJwtTokenService
     {
-        public Task<string> GenerateTokenAsync(User user)
+        public async Task<string> GenerateTokenAsync(User user)
         {
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.Role, user.Role.ToString())
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration.GetSection("APITokenKey")["Key"]!));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.GetSection("APITokenKey")["Key"]!));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
+            //var tokenDescriptor = new SecurityTokenDescriptor
+            //{
+            //    Audience = "abcxyzxyedh",
+            //    Issuer = "www.hkxljsxiuwhuxhusxnoz.com",
+            //    Subject = new ClaimsIdentity(claims),
+            //    Expires = DateTime.Now.AddHours(1),
+            //    SigningCredentials = creds
+            //};
+
+
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Audience = "abcxyzxyedh",
-                Issuer = "www.hkxljsxiuwhuxhusxnoz.com",
+                Audience = _configuration["JwtSettings:Audience"],
+                Issuer = _configuration["JwtSettings:Issuer"],
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddHours(1),
+                Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = creds
             };
 
@@ -31,7 +41,7 @@ namespace UserManagementWebAPI.Services.Implementation
             var token = tokenHandler.CreateToken(tokenDescriptor);
 
             JwtSecurityTokenHandler tokenHandler1 = tokenHandler;
-            return tokenHandler1.WriteToken(user);
+            return tokenHandler.WriteToken(token);
         }  
     }
 }

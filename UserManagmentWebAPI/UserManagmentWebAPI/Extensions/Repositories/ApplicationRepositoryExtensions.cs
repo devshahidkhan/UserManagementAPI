@@ -1,5 +1,7 @@
 ﻿using UserManagementWebAPI.Repositories.Implementation;
 using UserManagementWebAPI.Repositories.Interfces;
+using UserManagementWebAPI.Repositories.Users.Implementation;
+using UserManagementWebAPI.Repositories.Users.Interface;
 
 namespace UserManagementWebAPI.Extensions.Repositories
 {
@@ -9,6 +11,7 @@ namespace UserManagementWebAPI.Extensions.Repositories
         {
             //---> Repositories <---
             services.AddScoped<IUserAuthenticationRepository, UserAuthenticationRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
             return services;
         }
     }
