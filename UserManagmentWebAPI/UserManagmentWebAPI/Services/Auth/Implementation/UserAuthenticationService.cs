@@ -1,12 +1,12 @@
 ﻿using UserManagementWebAPI.Response;
-using UserManagementWebAPI.Services.Interfaces;
 using UserManagementWebAPI.DTO_s.Authentication;
-using UserManagementWebAPI.Extentions.Mappers.UserMapper;
-using UserManagementWebAPI.Repositories.Interfces;
+using UserManagementWebAPI.Extensions.Mappers.AuthMapper;
+using UserManagementWebAPI.Repositories.Auth.Interfces;
+using UserManagementWebAPI.Services.Auth.Interfaces;
 
 
 
-namespace UserManagementWebAPI.Services.Implementation
+namespace UserManagementWebAPI.Services.Auth.Implementation
 {
     public class UserAuthenticationService:IUserAuthenticationService
     {
@@ -24,7 +24,7 @@ namespace UserManagementWebAPI.Services.Implementation
             _logger = logger;
         }
 
-        public async Task<ApiResponse<string>> RegisterUserAsync(CreateUserDto request)
+        public async Task<ApiResponse<string>> RegisterUserAsync(RegisterUserDto request)
         {
             try
             {

@@ -3,7 +3,7 @@ using UserManagementWebAPI.DTO_s.Authentication;
 
 namespace UserManagementWebAPI.DTO_s.Validators
 {
-    public class CreateUserDtoValidator:AbstractValidator<CreateUserDto>
+    public class CreateUserDtoValidator:AbstractValidator<RegisterUserDto>
     {
         public CreateUserDtoValidator()
         {

@@ -2,7 +2,7 @@
 using UserManagementWebAPI.Data.Entities;
 
 
-namespace UserManagementWebAPI.Services.Interfaces
+namespace UserManagementWebAPI.Services.Auth.Interfaces
 {
     public interface IJwtTokenService
     {

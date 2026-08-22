@@ -2,10 +2,10 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using UserManagementWebAPI.Services.Interfaces;
 using UserManagementWebAPI.Data.Entities;
+using UserManagementWebAPI.Services.Auth.Interfaces;
 
-namespace UserManagementWebAPI.Services.Implementation
+namespace UserManagementWebAPI.Services.Auth.Implementation
 {
     public class JwtTokenService(IConfiguration _configuration) : IJwtTokenService
     {

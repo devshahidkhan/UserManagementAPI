@@ -2,7 +2,7 @@
 
 namespace UserManagementWebAPI.DTO_s.Users
 {
-    public record UpdateDto
+    public record UpdateUserDto
     (
         string FullName,
         string UserName,

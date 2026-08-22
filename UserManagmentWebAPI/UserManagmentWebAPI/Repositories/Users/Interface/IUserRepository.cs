@@ -4,13 +4,10 @@ namespace UserManagementWebAPI.Repositories.Users.Interface
 {
     public interface IUserRepository
     {
-        //Get the Uer Short Info
-        public Task<List<User>> GetUsersAsync();
-        //Get the User Complete Info
-        public Task<User> GetByIdAsync(Guid id);
-
-        public Task Update(User user);
-
-        public Task<bool> DeleteUserAsync(Guid id);
+        Task AddUserAsync(User user);
+        Task<User> GetByIdAsync(Guid id);
+        Task<List<User>> GetUsersAsync();
+        Task UpdateUser(User user);
+        Task<bool> DeleteUserAsync(Guid id);
     }
 }

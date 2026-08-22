@@ -7,11 +7,11 @@ using Serilog;
 using Swashbuckle.AspNetCore.Filters;
 using System.Reflection;
 using System.Text;
-using UserManagementWebAPI.Services.Implementation;
-using UserManagementWebAPI.Services.Interfaces;
 using UserManagementWebAPI.Data;
 using UserManagementWebAPI.Services.Users.Interface;
 using UserManagementWebAPI.Services.Users.Implementation;
+using UserManagementWebAPI.Services.Auth.Implementation;
+using UserManagementWebAPI.Services.Auth.Interfaces;
 
 
 namespace UserManagementWebAPI.Extensions.Services

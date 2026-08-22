@@ -1,5 +1,5 @@
-﻿using UserManagementWebAPI.Repositories.Implementation;
-using UserManagementWebAPI.Repositories.Interfces;
+﻿using UserManagementWebAPI.Repositories.Auth.Implementation;
+using UserManagementWebAPI.Repositories.Auth.Interfces;
 using UserManagementWebAPI.Repositories.Users.Implementation;
 using UserManagementWebAPI.Repositories.Users.Interface;
 

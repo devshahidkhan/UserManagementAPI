@@ -3,7 +3,7 @@ using UserManagementWebAPI.Enums;
 
 namespace UserManagementWebAPI.DTO_s.Authentication
 {
-    public record CreateUserDto
+    public record RegisterUserDto
     (
        Guid UserId,
        string FullName,
@@ -11,7 +11,6 @@ namespace UserManagementWebAPI.DTO_s.Authentication
        string Email,
        string Contact,
        string Address,
-       //Role Role,
        string Password
     );
 }

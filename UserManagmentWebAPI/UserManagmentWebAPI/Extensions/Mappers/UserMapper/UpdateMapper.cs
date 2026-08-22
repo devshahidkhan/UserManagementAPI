@@ -7,14 +7,14 @@ namespace UserManagementWebAPI.Extensions.Mappers.UserMapper
 {
     public static class UpdateMapper
     {
-        public static void MapDtoToUser(this UpdateDto request,User user)
+        public static void MapToUser(this UpdateUserDto dto, User user)
         {
-            user.FullName = request.FullName;
-            user.UserName = request.UserName;
-            user.Email = request.Email;
-            user.Contact = request.Contact;
-            user.Address = request.Address;
-            user.Role = request.Role;
+            user.FullName = dto.FullName;
+            user.UserName = dto.UserName;
+            user.Email = dto.Email;
+            user.Contact = dto.Contact;
+            user.Address = dto.Address;
+            user.Role = dto.Role;
         }
     }
 }

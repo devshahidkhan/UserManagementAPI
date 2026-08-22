@@ -8,7 +8,6 @@ namespace UserManagementWebAPI.DTO_s.Users
              string UserName,
              string Email,
              string Contact,
-             string Address,
-             Role Role
+             string Address
         );
 }

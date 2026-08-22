@@ -2,9 +2,9 @@
 using UserManagementWebAPI.Data;
 using UserManagementWebAPI.Data.Entities;
 using UserManagementWebAPI.DTO_s.Authentication;
-using UserManagementWebAPI.Repositories.Interfces;
+using UserManagementWebAPI.Repositories.Auth.Interfces;
 
-namespace UserManagementWebAPI.Repositories.Implementation
+namespace UserManagementWebAPI.Repositories.Auth.Implementation
 {
     public class UserAuthenticationRepository: IUserAuthenticationRepository
     {

@@ -1,11 +1,12 @@
-﻿using UserManagementWebAPI.Data.Entities;
-using UserManagementWebAPI.DTO_s.Users;
+﻿using System.Runtime.CompilerServices;
+using UserManagementWebAPI.Data.Entities;
+using UserManagementWebAPI.DTO_s.Authentication;
 
-namespace UserManagementWebAPI.Extensions.Mappers.UserMapper
+namespace UserManagementWebAPI.Extensions.Mappers.AuthMapper
 {
-    public static class CreateUserMapper
+    public static class RegisterUserMapper
     {
-        public static User MapToUser(this CreateUserDto request)
+        public static User ToEntity(this RegisterUserDto request)
         {
             return new User
             {

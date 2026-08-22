@@ -5,10 +5,10 @@ namespace UserManagementWebAPI.Extensions.Mappers.UserMapper
 {
     public static class GetByIdMapper
     {
-        public static GetByIdDto MapUserToDto(this User user)
+        public static GetByIdDto MapToDto(this User user)
         {
             return new GetByIdDto
-            (
+                (
                 user.UserId,
                 user.FullName,
                 user.UserName,
@@ -16,7 +16,7 @@ namespace UserManagementWebAPI.Extensions.Mappers.UserMapper
                 user.Contact,
                 user.Address,
                 user.Role
-            );
+                );
         }
     }
 }
