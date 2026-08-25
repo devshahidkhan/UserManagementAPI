@@ -1,6 +1,5 @@
-﻿using System.Runtime.CompilerServices;
-using UserManagementWebAPI.Data.Entities;
-using UserManagementWebAPI.DTO_s.Authentication;
+﻿using UserManagementWebAPI.Data.Entities;
+using UserManagementWebAPI.DTO_s.Auth;
 
 namespace UserManagementWebAPI.Extensions.Mappers.AuthMapper
 {

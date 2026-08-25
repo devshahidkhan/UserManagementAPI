@@ -1,28 +1,29 @@
 ﻿using UserManagementWebAPI.Response;
-using UserManagementWebAPI.DTO_s.Authentication;
 using UserManagementWebAPI.Extensions.Mappers.AuthMapper;
 using UserManagementWebAPI.Repositories.Auth.Interfces;
 using UserManagementWebAPI.Services.Auth.Interfaces;
+using UserManagementWebAPI.DTO_s.Auth;
 
 
 
 namespace UserManagementWebAPI.Services.Auth.Implementation
 {
-    public class UserAuthenticationService:IUserAuthenticationService
+    public class UserAuthService:IUserAuthService
     {
-        private readonly IUserAuthenticationRepository _authenticationRepository;
+        private readonly IUserAuthRepository _authenticationRepository;
         private readonly IPasswordHasher _passwordHasher; 
         private readonly IJwtTokenService _jwtTokenService;
 
-        private readonly ILogger<UserAuthenticationService> _logger;
+        private readonly ILogger<UserAuthService> _logger;
 
-        public UserAuthenticationService(IUserAuthenticationRepository authenticationRepository,IPasswordHasher passwordHasher,IJwtTokenService jwtTokenService,ILogger<UserAuthenticationService> logger) 
+        public UserAuthService(IUserAuthRepository authenticationRepository,IPasswordHasher passwordHasher,IJwtTokenService jwtTokenService,ILogger<UserAuthService> logger) 
         {
             _authenticationRepository = authenticationRepository;
             _passwordHasher = passwordHasher;
             _jwtTokenService = jwtTokenService;
             _logger = logger;
         }
+        
 
         public async Task<ApiResponse<string>> RegisterUserAsync(RegisterUserDto request)
         {
@@ -59,7 +60,7 @@ namespace UserManagementWebAPI.Services.Auth.Implementation
             }
         }
 
-        public async Task<ApiResponse<string>> LoginAsync(LoginRequest request)
+        public async Task<ApiResponse<string>> LoginAsync(LoginDto request)
         {
             var user = await _authenticationRepository.GetByIdentifierAsync(request.Identifier);
             if (user is null)

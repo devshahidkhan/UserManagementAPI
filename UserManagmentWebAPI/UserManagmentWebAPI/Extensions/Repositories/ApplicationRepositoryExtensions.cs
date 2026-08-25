@@ -10,7 +10,7 @@ namespace UserManagementWebAPI.Extensions.Repositories
         public static IServiceCollection AddApplicationRepositories(this IServiceCollection services)
         {
             //---> Repositories <---
-            services.AddScoped<IUserAuthenticationRepository, UserAuthenticationRepository>();
+            services.AddScoped<IUserAuthRepository, UserAuthRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
             return services;
         }

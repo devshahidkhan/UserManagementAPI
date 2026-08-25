@@ -19,7 +19,7 @@ namespace UserManagementWebAPI.Extensions.Services
     public static class ApplicationServiceExtensions
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services,ConfigurationManager manager) => services
-            .AddScoped<IUserAuthenticationService, UserAuthenticationService>()
+            .AddScoped<IUserAuthService, UserAuthService>()
             .AddScoped<IUserService,UserService>()
             .AddScoped<IPasswordHasher, PasswordHasher>()
             .AddScoped<IJwtTokenService, JwtTokenService>()

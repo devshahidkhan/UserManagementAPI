@@ -1,23 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using UserManagementWebAPI.DTO_s.Authentication;
-using UserManagementWebAPI.DTO_s.Users;
+using UserManagementWebAPI.DTO_s.Auth;
 using UserManagementWebAPI.Filters;
 using UserManagementWebAPI.Services.Auth.Interfaces;
 using UserManagementWebAPI.Services.Users.Interface;
 
 
-namespace UserManagementWebAPI.Controllers.Authentication
+namespace UserManagementWebAPI.Controllers.Auth
 {
     [Route("api/[controller]")]
     [ApiController]
     [ValidateModelState]
-    public class AuthenticationController : ControllerBase
+    public class AuthController : ControllerBase
     {
-        private readonly IUserAuthenticationService _authenticationService;
-        private readonly ILogger<AuthenticationController> _logger;
+        private readonly IUserAuthService _authenticationService;
+        private readonly ILogger<AuthController> _logger;
         private readonly IUserService _user;
 
-        public AuthenticationController(IUserAuthenticationService authenticationService, ILogger<AuthenticationController> logger, IUserService user)
+        public AuthController(IUserAuthService authenticationService, ILogger<AuthController> logger, IUserService user)
         {
             _authenticationService = authenticationService;
             _logger = logger;
@@ -38,7 +37,7 @@ namespace UserManagementWebAPI.Controllers.Authentication
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> Login([FromBody] LoginRequest request)
+        public async Task<IActionResult> Login([FromBody] LoginDto request)
         {
             _logger.LogInformation($"User attempting to log in with Identifier: {request.Identifier}");
             var result = await _authenticationService.LoginAsync(request);

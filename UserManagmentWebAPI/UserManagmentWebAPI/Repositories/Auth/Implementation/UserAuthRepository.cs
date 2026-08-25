@@ -1,16 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using UserManagementWebAPI.Data;
 using UserManagementWebAPI.Data.Entities;
-using UserManagementWebAPI.DTO_s.Authentication;
 using UserManagementWebAPI.Repositories.Auth.Interfces;
 
 namespace UserManagementWebAPI.Repositories.Auth.Implementation
 {
-    public class UserAuthenticationRepository: IUserAuthenticationRepository
+    public class UserAuthRepository: IUserAuthRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public UserAuthenticationRepository(ApplicationDbContext context)
+        public UserAuthRepository(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -28,20 +27,9 @@ namespace UserManagementWebAPI.Repositories.Auth.Implementation
 
         }
 
-        public async Task<bool> LoginAsync(LoginRequest request)
+        public async Task<User?> GetByIdentifierAsync(string identifier)
         {
-            var IsValidUser = await _context.Users.AnyAsync(x => x.Email == request.Identifier || x.UserName == request.Identifier || x.Contact == request.Identifier);
-            if (IsValidUser)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        public async Task<User> GetByIdentifierAsync(string identifier)
-        {
-           var user = await _context.Users.FirstOrDefaultAsync(x => x.Email == identifier || x.UserName == identifier || x.Contact == identifier);
-           return user;
+            return await _context.Users.FirstOrDefaultAsync(x => x.Email == identifier || x.UserName == identifier || x.Contact == identifier);
         }
     }
 }

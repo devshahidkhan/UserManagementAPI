@@ -1,7 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-using UserManagementWebAPI.Enums;
-
-namespace UserManagementWebAPI.DTO_s.Authentication
+﻿namespace UserManagementWebAPI.DTO_s.Auth
 {
     public record RegisterUserDto
     (
