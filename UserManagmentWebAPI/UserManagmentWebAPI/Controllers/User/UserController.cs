@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using UserManagementWebAPI.Data.Entities;
 using UserManagementWebAPI.DTO_s.Users;
@@ -6,6 +7,7 @@ using UserManagementWebAPI.Services.Users.Interface;
 
 namespace UserManagementWebAPI.Controllers.User
 {
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UserController : ControllerBase

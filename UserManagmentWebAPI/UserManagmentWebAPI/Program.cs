@@ -12,11 +12,12 @@ builder.Services.AddControllers(option =>
 {
     option.Filters.Add<ValidateModelState>(); //use for model Validation(override)
 });
+
 builder.Services.AddApplicationServices(builder.Configuration)
                 .AddApplicationRepositories()
                  //For Swagger(Extension)
-                .AddSwaggerDocumentation()
-                .AddAuthentations(builder.Configuration)
+                .AddCustomSwagger()
+                .AddJwtAuthentication(builder.Configuration)
                 //For Valiation CreateUserRequest(Extension)
                 .AddFluentValidationAutoValidation()
                 .AddValidatorsFromAssemblyContaining<CreateUserDtoValidator>();

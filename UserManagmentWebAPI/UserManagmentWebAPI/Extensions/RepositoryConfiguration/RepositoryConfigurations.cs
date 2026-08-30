@@ -5,7 +5,7 @@ using UserManagementWebAPI.Repositories.Users.Interface;
 
 namespace UserManagementWebAPI.Extensions.Repositories
 {
-    public static class ApplicationRepositoryExtensions
+    public static class RepositoryConfigurations
     {
         public static IServiceCollection AddApplicationRepositories(this IServiceCollection services)
         {

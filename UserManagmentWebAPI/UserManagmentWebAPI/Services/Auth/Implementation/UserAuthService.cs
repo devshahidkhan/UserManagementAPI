@@ -3,8 +3,7 @@ using UserManagementWebAPI.Extensions.Mappers.AuthMapper;
 using UserManagementWebAPI.Repositories.Auth.Interfces;
 using UserManagementWebAPI.Services.Auth.Interfaces;
 using UserManagementWebAPI.DTO_s.Auth;
-
-
+using UserManagementWebAPI.Utility.Interface;
 
 namespace UserManagementWebAPI.Services.Auth.Implementation
 {
@@ -73,8 +72,8 @@ namespace UserManagementWebAPI.Services.Auth.Implementation
             {
                 return ApiResponse<string>.Failure("Invalid Password");
             }
-
-            return ApiResponse<string>.Success(await _jwtTokenService.GenerateTokenAsync(user));
+            //return ApiResponse<string>.Success("Login Successfully!");
+            return ApiResponse<string>.Success(_jwtTokenService.CreateJwt(user));
         }
     }
 }

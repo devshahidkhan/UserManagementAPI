@@ -2,10 +2,10 @@
 using UserManagementWebAPI.Data.Entities;
 
 
-namespace UserManagementWebAPI.Services.Auth.Interfaces
+namespace UserManagementWebAPI.Utility.Interface
 {
     public interface IJwtTokenService
     {
-       public Task<string> GenerateTokenAsync(User user);
+       string CreateJwt(User user);
     }
 }
