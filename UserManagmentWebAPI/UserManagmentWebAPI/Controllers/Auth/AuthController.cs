@@ -14,13 +14,12 @@ namespace UserManagementWebAPI.Controllers.Auth
     {
         private readonly IUserAuthService _authenticationService;
         private readonly ILogger<AuthController> _logger;
-        private readonly IUserService _user;
 
-        public AuthController(IUserAuthService authenticationService, ILogger<AuthController> logger, IUserService user)
+
+        public AuthController(IUserAuthService authenticationService, ILogger<AuthController> logger)
         {
             _authenticationService = authenticationService;
             _logger = logger;
-            _user = user;
         }
 
         [HttpPost("RegisterUser")]

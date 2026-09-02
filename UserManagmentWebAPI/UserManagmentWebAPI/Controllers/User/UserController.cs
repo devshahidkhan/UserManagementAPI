@@ -10,18 +10,12 @@ namespace UserManagementWebAPI.Controllers.User
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController(IUserService userService) : ControllerBase
     {
-        private readonly IUserService _userService;
-        public UserController(IUserService userService)
-        {
-            _userService = userService;
-        }
-
         [HttpPost("CreateUser")]
         public async Task<IActionResult> CreateUser([FromBody] CreateUserDto request)
         {
-            var isSaved = await _userService.CreateUserAsync(request);
+            var isSaved = await userService.CreateUserAsync(request);
             //return Ok(message);    
 
             //Proper Json response
@@ -34,21 +28,21 @@ namespace UserManagementWebAPI.Controllers.User
         [HttpGet("GetById/{id:guid}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var user = await _userService.GetByIdAsync(id);
+            var user = await userService.GetByIdAsync(id);
             return Ok(user);
         }
 
         [HttpGet("GetUsers")]
         public async Task<IActionResult> GetUsers()
         {
-            var users = await _userService.GetUsersAsync();
+            var users = await userService.GetUsersAsync();
             return Ok(users);
         }
 
         [HttpPut("UpdateUser/{id:guid}")]
         public async Task<IActionResult> Update(Guid id, [FromBody] UpdateUserDto request)
         {
-            var isUpdate = await _userService.UpdateUser(id, request);
+            var isUpdate = await userService.UpdateUser(id, request);
 
             return Ok(new
             {
@@ -59,7 +53,7 @@ namespace UserManagementWebAPI.Controllers.User
         [HttpDelete("DeleteUser/{id:guid}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var isDelete = await _userService.DeleteUserAsync(id);
+            var isDelete = await userService.DeleteUserAsync(id);
             if (!isDelete)
             {
                 return NotFound("User not found");

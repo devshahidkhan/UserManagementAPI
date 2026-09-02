@@ -4,7 +4,6 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using Swashbuckle.AspNetCore.Filters;
-using System.Reflection;
 using System.Text;
 using UserManagementWebAPI.Data;
 using UserManagementWebAPI.Services.Users.Interface;

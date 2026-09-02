@@ -1,8 +1,9 @@
 ﻿using Serilog;
+using UserManagementWebAPI.Middlewares;
 
 namespace UserManagementWebAPI.Extensions.Middleware
 {
-    public static class MiddlewareExtention
+    public static class MiddlewareConfigurations
     {
         public static WebApplication ConfigureRequestPipeline(this WebApplication app)
         {
@@ -13,8 +14,9 @@ namespace UserManagementWebAPI.Extensions.Middleware
                 app.UseSwaggerUI(); //-->((Package)Swashbuckle.AspNetCore.SwaggerUI) This is also middleware and Convert the Json into beautiful webpage
             }
 
-            app.UseHttpsRedirection();
+            app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 
+            app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseAuthorization();
      
@@ -22,6 +24,7 @@ namespace UserManagementWebAPI.Extensions.Middleware
             app.UseSerilogRequestLogging();
 
             app.MapControllers();
+
             return app;
         }
     }
