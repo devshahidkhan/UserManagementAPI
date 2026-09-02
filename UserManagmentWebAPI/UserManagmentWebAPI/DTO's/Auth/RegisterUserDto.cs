@@ -2,7 +2,6 @@
 {
     public record RegisterUserDto
     (
-       Guid UserId,
        string FullName,
        string UserName,
        string Email,

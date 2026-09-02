@@ -1,8 +1,9 @@
-﻿using UserManagementWebAPI.Response;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using UserManagementWebAPI.DTO_s.Auth;
 using UserManagementWebAPI.Extensions.Mappers.AuthMapper;
 using UserManagementWebAPI.Repositories.Auth.Interfces;
+using UserManagementWebAPI.Response;
 using UserManagementWebAPI.Services.Auth.Interfaces;
-using UserManagementWebAPI.DTO_s.Auth;
 using UserManagementWebAPI.Utility.Interface;
 
 namespace UserManagementWebAPI.Services.Auth.Implementation
@@ -12,7 +13,6 @@ namespace UserManagementWebAPI.Services.Auth.Implementation
         private readonly IUserAuthRepository _authenticationRepository;
         private readonly IPasswordHasher _passwordHasher; 
         private readonly IJwtTokenService _jwtTokenService;
-
         private readonly ILogger<UserAuthService> _logger;
 
         public UserAuthService(IUserAuthRepository authenticationRepository,IPasswordHasher passwordHasher,IJwtTokenService jwtTokenService,ILogger<UserAuthService> logger) 
@@ -28,29 +28,26 @@ namespace UserManagementWebAPI.Services.Auth.Implementation
         {
             try
             {
-                var user = request.ToEntity();
+                var domain = request.ToEntity();
                 await _passwordHasher.CreateHash(request.Password, out byte[] hash, out byte[] salt);
-                user.PasswordHash = hash;
-                user.PasswordSalt = salt;
-                var existingUser = await _authenticationRepository.RegisterUserAsync(user);
+                domain.PasswordHash = hash;
+                domain.PasswordSalt = salt;
+                var existingUser = await _authenticationRepository.RegisterUserAsync(domain);
 
                 if (existingUser is null)
-                {
                     return ApiResponse<string>.Success("User has been Signup Successfully!");
-                }
+
                 if (existingUser.Email == request.Email)
-                {
                     return ApiResponse<string>.Failure("Email is already exists");
-                }
+
                 else if (existingUser.UserName == request.UserName)
-                {
                     return ApiResponse<string>.Failure("UserName is already exists.");
-                }
+
                 else if (existingUser.Contact == request.Contact)
-                {
                     return ApiResponse<string>.Failure("Contact is already exists");
-                }
+
                 return ApiResponse<string>.Success("User has been Signup Successfully!");
+
             }
             catch (Exception ex)
             {

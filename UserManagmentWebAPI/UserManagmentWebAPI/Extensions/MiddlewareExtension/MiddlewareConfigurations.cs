@@ -17,12 +17,12 @@ namespace UserManagementWebAPI.Extensions.Middleware
             app.UseMiddleware<GlobalExceptionHandlingMiddleware>();
 
             app.UseHttpsRedirection();
-            app.UseAuthentication();
-            app.UseAuthorization();
-     
 
             app.UseSerilogRequestLogging();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+     
             app.MapControllers();
 
             return app;

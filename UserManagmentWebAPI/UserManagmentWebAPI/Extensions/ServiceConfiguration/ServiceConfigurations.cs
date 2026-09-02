@@ -4,14 +4,15 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using Swashbuckle.AspNetCore.Filters;
+using System.Reflection;
 using System.Text;
 using UserManagementWebAPI.Data;
-using UserManagementWebAPI.Services.Users.Interface;
-using UserManagementWebAPI.Services.Users.Implementation;
 using UserManagementWebAPI.Services.Auth.Implementation;
 using UserManagementWebAPI.Services.Auth.Interfaces;
-using UserManagementWebAPI.Utility.Interface;
+using UserManagementWebAPI.Services.Users.Implementation;
+using UserManagementWebAPI.Services.Users.Interface;
 using UserManagementWebAPI.Utility.Implementation;
+using UserManagementWebAPI.Utility.Interface;
 
 
 namespace UserManagementWebAPI.Extensions.Services
@@ -48,6 +49,13 @@ namespace UserManagementWebAPI.Extensions.Services
 
                 // Register the operation filter to apply security requirements to endpoints
                 options.OperationFilter<SecurityRequirementsOperationFilter>();
+
+
+                // Include XML comments for documentation (if available)
+                var assembly = Assembly.GetExecutingAssembly();
+                var xmlFile = $"{assembly.GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                options.IncludeXmlComments(xmlPath);
 
             });
 
